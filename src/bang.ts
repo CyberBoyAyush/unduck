@@ -12,12 +12,21 @@ export const bangs = [
   },
   {
     c: "Perplexity",
-    d: "https://www.perplexity.ai/",
+    d: "www.perplexity.ai/",
     r: 0,
     s: "Perplexity",
     sc: "Perplexity",
     t: "p",
     u: "https://www.perplexity.ai/?q={{{s}}}",
+  },
+  {
+    c: "ChatGpt",
+    d: "chat.openai.com/",
+    r: 0,
+    s: "ChatGPT",
+    sc: "AI",
+    t: "c",
+    u: "https://chat.openai.com/?q={{{s}}}",
   },
   {
     c: "Tech",
@@ -15990,15 +15999,6 @@ export const bangs = [
     sc: "Business",
     t: "ccm",
     u: "https://coinmarketcap.com/currencies/search/?q={{{s}}}",
-  },
-  {
-    c: "Tech",
-    d: "www.cnet.com",
-    r: 165,
-    s: "CNET",
-    sc: "Downloads",
-    t: "c",
-    u: "http://www.cnet.com/1770-5_1-0.html?query={{{s}}}",
   },
   {
     c: "Shopping",
