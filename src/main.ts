@@ -44,7 +44,7 @@ function noSearchDefaultPageRender() {
   });
 }
 
-const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "b";
+const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "brave";
 const defaultBang = bangs.find((b) => b.t === LS_DEFAULT_BANG);
 
 function getBangredirectUrl() {
@@ -55,15 +55,16 @@ function getBangredirectUrl() {
     return null;
   }
 
-  const match = query.match(/!(\S+)/i);
+  // Allow both ! and / as bang shortcuts
+  const match = query.match(/([!\/])(\S+)/i);
 
-  const bangCandidate = match?.[1]?.toLowerCase();
+  const bangCandidate = match?.[2]?.toLowerCase();
   const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? defaultBang;
 
-  // Remove the first bang from the query
-  const cleanQuery = query.replace(/!\S+\s*/i, "").trim();
+  // Remove the first bang from the query (either ! or /)
+  const cleanQuery = query.replace(/([!\/])\S+\s*/i, "").trim();
 
-  // If the query is just `!gh`, use `github.com` instead of `github.com/search?q=`
+  // If the query is just `!gh` or `/gh`, use `github.com` instead of `github.com/search?q=`
   if (cleanQuery === "")
     return selectedBang ? `https://${selectedBang.d}` : null;
 
