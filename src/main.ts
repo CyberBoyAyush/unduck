@@ -55,16 +55,16 @@ function getBangredirectUrl() {
     return null;
   }
 
-  // Allow both ! and / as bang shortcuts
-  const match = query.match(/([!\/])(\S+)/i);
+  // Allow ! and : as bang shortcuts
+  const match = query.match(/([!:])(\S+)/i);
 
   const bangCandidate = match?.[2]?.toLowerCase();
   const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? defaultBang;
 
-  // Remove the first bang from the query (either ! or /)
-  const cleanQuery = query.replace(/([!\/])\S+\s*/i, "").trim();
+  // Remove the first bang from the query (either ! or :)
+  const cleanQuery = query.replace(/([!:])\S+\s*/i, "").trim();
 
-  // If the query is just `!gh` or `/gh`, use `github.com` instead of `github.com/search?q=`
+  // If the query is just a bang, use the domain directly
   if (cleanQuery === "")
     return selectedBang ? `https://${selectedBang.d}` : null;
 
